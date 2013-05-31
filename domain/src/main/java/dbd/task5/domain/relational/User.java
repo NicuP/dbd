@@ -20,6 +20,8 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private Boolean isAdmin;
+    private int groupId;
 
     public Long getId() {
         return id;
@@ -85,5 +87,21 @@ public class User {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
+    }
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
     }
 }
