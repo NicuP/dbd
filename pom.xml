@@ -13,6 +13,7 @@
         <module>domain</module>
         <module>logic</module>
         <module>relational</module>
+        <module>web</module>
     </modules>
 
 
@@ -67,6 +68,12 @@
             <artifactId>spring-tx</artifactId>
             <version>${spring.version}</version>
         </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+            
 
         <!--Spring Data-->
         <dependency>
