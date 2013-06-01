@@ -4,9 +4,7 @@ import org.apache.commons.lang.RandomStringUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -57,7 +55,13 @@ public class MockFactory {
                 value = randomString();
             } else if (int.class.equals(classParameter) || Integer.class.equals((classParameter))) {
                 value = randomInteger();
-            } else {
+            } else if (boolean.class.equals(classParameter) || Boolean.class.equals((classParameter))) {
+                value = random.nextBoolean();
+            } else if (Date.class.equals(classParameter)) {
+                value = random.nextBoolean();
+            } else if (List.class.equals(classParameter)) {
+                value = Collections.emptyList();
+            }else {
                 value = mock(classParameter);
             }
             if (t != null) {

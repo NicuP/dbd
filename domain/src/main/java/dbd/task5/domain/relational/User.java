@@ -1,8 +1,7 @@
 package dbd.task5.domain.relational;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,7 +20,10 @@ public class User {
     private String password;
     private String email;
     private Boolean isAdmin;
-    private int groupId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Group group;
+    @OneToMany(mappedBy = "user")
+    private List<TimeSheet> timeSheets;
 
     public Long getId() {
         return id;
@@ -97,11 +99,11 @@ public class User {
         isAdmin = admin;
     }
 
-    public int getGroupId() {
-        return groupId;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

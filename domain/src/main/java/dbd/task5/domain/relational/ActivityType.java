@@ -9,7 +9,6 @@ import javax.persistence.Id;
  * User: Andrei
  * Date: 5/31/13
  * Time: 7:54 AM
- * To change this template use File | Settings | File Templates.
  */
 @Entity
 public class ActivityType {

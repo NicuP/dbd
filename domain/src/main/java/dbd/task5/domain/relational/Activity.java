@@ -1,15 +1,12 @@
 package dbd.task5.domain.relational;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Andrei
  * Date: 5/31/13
  * Time: 7:54 AM
- * To change this template use File | Settings | File Templates.
  */
 @Entity
 public class Activity {
@@ -17,8 +14,12 @@ public class Activity {
     @GeneratedValue
     private Long id;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private ActivityGroup activityGroup;
+
     private String name;
-    private int activityTypeId;
+    @OneToOne
+    private ActivityType activityType;
     private int duration;
 
     public Long getId() {
@@ -38,19 +39,27 @@ public class Activity {
         this.name = name;
     }
 
-    public int getActivityTypeId() {
-        return activityTypeId;
-    }
-
-    public void setActivityTypeId(int activityTypeId) {
-        this.activityTypeId = activityTypeId;
-    }
-
     public int getDuration() {
         return duration;
     }
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public ActivityType getActivityType() {
+        return activityType;
+    }
+
+    public void setActivityType(ActivityType activityType) {
+        this.activityType = activityType;
+    }
+
+    public ActivityGroup getActivityGroup() {
+        return activityGroup;
+    }
+
+    public void setActivityGroup(ActivityGroup activityGroup) {
+        this.activityGroup = activityGroup;
     }
 }

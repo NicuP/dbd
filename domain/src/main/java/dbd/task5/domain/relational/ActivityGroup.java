@@ -1,16 +1,14 @@
 package dbd.task5.domain.relational;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Andrei
  * Date: 5/31/13
  * Time: 7:54 AM
- * To change this template use File | Settings | File Templates.
  */
 @Entity
 public class ActivityGroup {
@@ -18,41 +16,60 @@ public class ActivityGroup {
     @GeneratedValue
     private Long id;
 
-    private int activityId;
-    private int groupId;
-    private Date start_date;
-    private Date end_date;
+    @OneToMany(mappedBy = "activityGroup")
+    private List<Activity> activities;
+    @OneToMany(mappedBy = "activityGroup")
+    private List<TimeSheet> timeSheets;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Group group;
+    private Date startDate;
+    private Date endDate;
 
-
-    public int getActivityId() {
-        return activityId;
+    public List<Activity> getActivities() {
+        return activities;
     }
 
-    public void setActivityId(int activityId) {
-        this.activityId = activityId;
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
     }
 
-    public int getGroupId() {
-        return groupId;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
-    public Date getStart_date() {
-        return start_date;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getEnd_date() {
-        return end_date;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public List<TimeSheet> getTimeSheets() {
+        return timeSheets;
+    }
+
+    public void setTimeSheets(List<TimeSheet> timeSheets) {
+        this.timeSheets = timeSheets;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

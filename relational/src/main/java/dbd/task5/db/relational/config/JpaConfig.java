@@ -34,6 +34,8 @@ public class JpaConfig {
     private static final String DATABASE_USERNAME = "db.username";
 
     private static final String HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
+    private static final String HIBERNATE_DIALECT = "hibernate.dialect";
+    private static final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
 
     private static final String ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
 
@@ -75,6 +77,8 @@ public class JpaConfig {
 
         Properties jpaProperties = new Properties();
         jpaProperties.put(HIBERNATE_HBM2DDL_AUTO, environment.getRequiredProperty(HIBERNATE_HBM2DDL_AUTO));
+        jpaProperties.put(HIBERNATE_DIALECT, environment.getRequiredProperty(HIBERNATE_DIALECT));
+        jpaProperties.put(HIBERNATE_SHOW_SQL, environment.getRequiredProperty(HIBERNATE_SHOW_SQL));
 
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
 
