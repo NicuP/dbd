@@ -1,4 +1,4 @@
-package dbd.web.controllers;
+package dbd.web.converter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ public class ActivityConverter {
 	public static Activity getActivity(ActivityDTO activityDTO){
 			
 		Activity activity  = new Activity();
+		activity.setId(activityDTO.getId());
 		activity.setName(activityDTO.getName());
 		activity.setDuration(Integer.valueOf(activityDTO.getDuration()));
 		
@@ -32,9 +33,11 @@ public class ActivityConverter {
 	public static ActivityDTO getActivityDTO(Activity activity){
 		
 		ActivityDTO activityDTO  = new ActivityDTO();
-		activityDTO.setId(activity.getId());
-		activityDTO.setName(activity.getName());
-		activityDTO.setDuration(String.valueOf(activity.getDuration()));
+		if (activity != null){
+			activityDTO.setId(activity.getId());
+			activityDTO.setName(activity.getName());
+			activityDTO.setDuration(String.valueOf(activity.getDuration()));
+		}
 		return activityDTO;
 	}
 }

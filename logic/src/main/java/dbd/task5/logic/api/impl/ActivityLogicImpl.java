@@ -18,7 +18,7 @@ public class ActivityLogicImpl implements ActivityLogic {
         return activityRepository.save(activity);
     }
 
-	public List<Activity> getActivities() {
+	public List<Activity> getAllActivities() {
 		return activityRepository.findAll();
 	}
 
@@ -26,7 +26,11 @@ public class ActivityLogicImpl implements ActivityLogic {
 		return activityRepository.save(activity);
 	}
 
-	public void removeActivity(Activity activity) throws Exception {
-		activityRepository.delete(activity);
+	public void removeActivity(Long id) throws Exception {
+		activityRepository.delete(id);
+	}
+
+	public Activity getActivity(Long id) {
+		return activityRepository.findOne(id);
 	}
 }

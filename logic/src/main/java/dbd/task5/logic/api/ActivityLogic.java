@@ -6,8 +6,9 @@ import dbd.task5.domain.relational.Activity;
 
 public interface ActivityLogic {
 
-	public List<Activity> getActivities();
+	public List<Activity> getAllActivities();
 	public Activity addActivity(Activity activity) throws Exception;
 	public Activity saveActivity(Activity activity) throws Exception;
-	public void removeActivity(Activity activity) throws Exception;
+	public void removeActivity(Long id) throws Exception;
+	public Activity getActivity(Long id);
 }

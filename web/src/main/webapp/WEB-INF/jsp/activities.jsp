@@ -5,10 +5,27 @@
 <html>
 <head>
 <style type="text/css">
-	.int {
-		float:left;
-		width: 150px;
-	}
+	 .row{
+        margin-left:50px;
+    }
+    .int{
+        float:right;
+    }
+	.hr {
+       border-color: #EAEAF3;
+       border-width: 1px;
+    }
+    .label {
+    	width: 200px;
+    }
+    .title{
+       color: #FF7A00;
+       font-size: 20px; 
+       margin-left:15px;
+       margin-right:300px;
+       margin-bottom: 25px;
+       margin-top: 25px;
+    }
 </style>
 </head>
 	<body>
@@ -31,25 +48,32 @@
         @SuppressWarnings("unchecked") 
             List<ActivityDTO> activities = (List<ActivityDTO>)request.getAttribute("activities");
             if (activities != null && activities.size() != 0) {%>
+            	<div class="title">
+	            	Activities table
+            	</div>
                 <% for (ActivityDTO activity : activities) { %>
                     <li> 
-                        <div>                               
+                        <div class="row">                                   
                                 <div>
-                                    <label class="int">Name : <%= activity.getName() %> </label>            
-                                    <label class="int">Duration: <%= activity.getDuration() %></label>
-				                    <form class="int" method="GET" action="/removeActivity">
-				                        <input type="hidden" name="id" value="<%activity.getId();%>">
-				                        <input class="btn" type="submit" value="Edit" />                                
-				                    </form>                                               
-                                    <form class="int" method="POST" action="/editActivity">
-				                          <input type="hidden" name="id" value="<%activity.getId();%>">                               
-				                          <input class="btn" type="submit" value="Remove" />
+                                	<div class="label">
+                                   	 <label >Name : <%= activity.getName() %> </label>            
+                                	</div>
+									<div class="label">
+                                    	<label >Duration: <%= activity.getDuration() %></label>
+									</div>
+				                    <form class="int" method=POST action="/dbd-assignment/removeActivity">
+				                       <input type="hidden" name="id" value="<%=activity.getId()%>">  
+				                        <input class="btn" type="submit" value="Remove" />                                
 				                    </form>
+                                    <form class="int" method="POST" action="/dbd-assignment/editActivity">
+				                          <input type="hidden" name="id" value="<%=activity.getId()%>">                               
+				                          <input class="btn" type="submit" value="Edit" />
+				                    </form>
+				                    <br/>
                                 </div>
-                                <div class="clear"></div>
                         </div>  
-                        <div class="clear"></div>
                     </li>
+                    <hr class="hr">
               <%
                 }
             } else {

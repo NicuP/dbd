@@ -16,8 +16,12 @@ public class ActivityService {
     @Autowired
     private ActivityLogic activityLogic;
 
-    public List<Activity> getActivities() {
-    	return activityLogic.getActivities();
+    public Activity getActivityById(Long id) {
+    	return activityLogic.getActivity(id);
+    }
+    
+    public List<Activity> getAllActivities() {
+    	return activityLogic.getAllActivities();
     }
     
     public void add(Activity activity) {
@@ -36,9 +40,9 @@ public class ActivityService {
 		}
     }
 	
-	public void remove(Activity activity) {
+	public void remove(Long id) {
     	try {
-			activityLogic.removeActivity(activity);
+			activityLogic.removeActivity(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
