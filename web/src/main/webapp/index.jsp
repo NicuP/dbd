@@ -5,6 +5,6 @@
 <head>
 </head>
 	<body>
-		<a href="activities.jsp">Activities</a>
+		<jsp:forward page="web-inf/jsp/home.jsp"></jsp:forward>
 	</body>
 </html>
