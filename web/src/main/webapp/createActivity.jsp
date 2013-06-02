@@ -5,6 +5,8 @@
 <head>
 </head>
 	<body>
-		<a href="activities.jsp">Activities</a>
+		<div>
+			create activity
+		</div>
 	</body>
 </html>
