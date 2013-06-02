@@ -1,12 +1,14 @@
 package dbd.task5.domain.mongo;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.util.List;
 
 public class Assignment {
     @Id
-    private Long id;
+    private String id;
     private String name;
     //add whatever you need here; if the field is a new class and you need it as another instance,
     //not to be embedded in this field, just annotate with @DBRef
@@ -14,14 +16,18 @@ public class Assignment {
     private Long userId;
 
     private String text;
-    private String image;
-    private List<String> attachments;
 
-    public Long getId() {
+    @Transient
+    private CommonsMultipartFile image;
+
+    @Transient
+    private List<CommonsMultipartFile> attachments;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -41,19 +47,19 @@ public class Assignment {
         this.text = text;
     }
 
-    public String getImage() {
+    public CommonsMultipartFile getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(CommonsMultipartFile image) {
         this.image = image;
     }
 
-    public List<String> getAttachments() {
+    public List<CommonsMultipartFile> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(List<String> attachments) {
+    public void setAttachments(List<CommonsMultipartFile> attachments) {
         this.attachments = attachments;
     }
 

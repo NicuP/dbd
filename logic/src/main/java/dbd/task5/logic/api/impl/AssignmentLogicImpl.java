@@ -12,6 +12,7 @@ import dbd.task5.domain.mongo.Homework;
 import dbd.task5.logic.api.AssignmentLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.File;
 import java.util.List;
@@ -31,28 +32,26 @@ public class AssignmentLogicImpl implements AssignmentLogic {
     private MongoConfig mongoConfig;
 
     public Assignment addAssignment(Assignment assignment) throws Exception {
-        saveFile(assignment.getImage(), "image-user" + assignment.getUserId() + "-" + assignment.getId());
+        saveFile(assignment.getImage(), "image-user" + assignment.getUserId() + "-" + assignment.getId(), "photo");
 
-        List<String> attachments = assignment.getAttachments();
+        List<CommonsMultipartFile> attachments = assignment.getAttachments();
         int i = 0;
-        for (String attachment : attachments) {
-            saveFile(attachment, "attachment-user" + assignment.getUserId() + "-number-" + i + "-" + assignment.getId());
+        for (CommonsMultipartFile attachment : attachments) {
+            saveFile(attachment, "attachment-user" + assignment.getUserId() + "-number-" + i + "-" +
+                    assignment.getId(), "attachment");
         }
 
         return assignmentRepository.save(assignment);
     }
 
-    private void saveFile(String filename, String identifier) throws Exception {
+    private void saveFile(CommonsMultipartFile file, String identifier, String namespace) throws Exception {
         Mongo mongo = mongoConfig.mongo();
         DB db = mongo.getDB(mongoConfig.getDatabaseName());
 
-        File imageFile = new File(filename);
-
-        // create a "photo" namespace
-        GridFS gfsPhoto = new GridFS(db, "photo");
+        GridFS gfsPhoto = new GridFS(db, namespace);
 
         // get image file from local drive
-        GridFSInputFile gfsFile = gfsPhoto.createFile(imageFile);
+        GridFSInputFile gfsFile = gfsPhoto.createFile(file.getInputStream());
 
         // set a new filename for identify purpose
         gfsFile.setFilename(identifier);
@@ -70,7 +69,8 @@ public class AssignmentLogicImpl implements AssignmentLogic {
 
         GridFSDBFile imageForOutput = gfsPhoto.findOne(identifier);
 
-        String file = "d:\\DBD\\images\\" + identifier + ".png";
+//        String file = "d:\\DBD\\images\\" + identifier + ".png";
+        String file = identifier;
 
         // save it into a new image file
         imageForOutput.writeTo(file);

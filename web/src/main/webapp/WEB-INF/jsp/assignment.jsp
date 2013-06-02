@@ -14,11 +14,33 @@
 <body>
     Assignment Page
 
-    <form:form action="/addAssignment" commandName="assignmentDTO">
+    <form:form action="/addAssignment" commandName="assignmentDTO" enctype="multipart/form-data" >
         <form:label path="name">Name</form:label>
         <form:input path="name" />
 
-        <form:button name="Submit" />
+        <form:label path="text">Description</form:label>
+        <form:input path="text" />
+
+        <form:label path="image">Image</form:label>
+        <form:input path="image" type="file" />
+
+        <form:label path="attachment1">Attachment 1</form:label>
+        <form:input path="attachment1" type="file" />
+
+        <form:label path="attachment2">Attachment 2</form:label>
+        <form:input path="attachment2" type="file" />
+
+        <form:label path="attachment3">Attachment 3</form:label>
+        <form:input path="attachment3" type="file" />
+
+        <form:label path="attachment4">Attachment 4</form:label>
+        <form:input path="attachment4" type="file" />
+
+        <form:label path="attachment5">Attachment 5</form:label>
+        <form:input path="attachment5" type="file" />
+
+        <input type="submit" name="Add Assignment" />
     </form:form>
+
 </body>
 </html>

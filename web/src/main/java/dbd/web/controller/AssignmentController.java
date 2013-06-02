@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class AssignmentController {
 
@@ -23,9 +25,7 @@ public class AssignmentController {
     }
 
     @RequestMapping(value = "/addAssignment", method = RequestMethod.POST)
-    public String addAssignment(@ModelAttribute AssignmentDTO assignmentDTO) {
-
-
+    public String addAssignment(HttpServletRequest request, @ModelAttribute AssignmentDTO assignmentDTO) throws Exception {
         assignmentService.add(assignmentDTO);
 
         return "assignment";
