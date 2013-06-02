@@ -3,6 +3,7 @@ package dbd.task5.db.mongo.config;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.WriteConcern;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -31,7 +32,7 @@ public class MongoConfig extends AbstractMongoConfiguration {
     private Environment environment;
 
     @Override
-    protected String getDatabaseName() {
+    public String getDatabaseName() {
         return environment.getRequiredProperty(DATABASE_NAME);
     }
 
