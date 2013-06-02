@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface AssignmentRepository extends CrudRepository<Assignment,Long> {
-    List<Homework> findByName(String name);
+    List<Assignment> findByName(String name);
 }
