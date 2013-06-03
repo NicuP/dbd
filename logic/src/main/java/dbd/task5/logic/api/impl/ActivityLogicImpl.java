@@ -6,14 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import dbd.task5.db.relational.repository.ActivityRepository;
+import dbd.task5.db.relational.repository.ActivityTypeRepository;
 import dbd.task5.domain.relational.Activity;
+import dbd.task5.domain.relational.ActivityType;
 import dbd.task5.logic.api.ActivityLogic;
 
 @Component
 public class ActivityLogicImpl implements ActivityLogic {
-    @Autowired
+   
+	@Autowired
     private ActivityRepository activityRepository;
-
+	@Autowired
+	private ActivityTypeRepository activityTypeRepository;
+	
     public Activity addActivity(Activity activity) throws Exception {
         return activityRepository.save(activity);
     }
@@ -32,5 +37,9 @@ public class ActivityLogicImpl implements ActivityLogic {
 
 	public Activity getActivity(Long id) {
 		return activityRepository.findOne(id);
+	}
+
+	public ActivityType getActivityType(Long id) {
+		return activityTypeRepository.findOne(id);
 	}
 }

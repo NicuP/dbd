@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dbd.task5.domain.relational.Activity;
+import dbd.task5.domain.relational.ActivityType;
 import dbd.task5.logic.api.ActivityLogic;
 
 @Service
@@ -47,4 +48,13 @@ public class ActivityService {
 			e.printStackTrace();
 		}
     }
+
+	public ActivityType getActivityTypeById(Long id) {
+		try {
+			return activityLogic.getActivityType(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

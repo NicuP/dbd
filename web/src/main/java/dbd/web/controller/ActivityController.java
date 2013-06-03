@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dbd.task5.domain.relational.Activity;
+import dbd.task5.domain.relational.ActivityType;
 import dbd.web.converter.ActivityConverter;
 import dbd.web.dto.ActivityDTO;
 import dbd.web.service.ActivityService;
@@ -39,8 +40,14 @@ public class ActivityController {
 
 	@RequestMapping(value = "/createActivity", method = RequestMethod.POST)
 	public ModelAndView createActivity(@ModelAttribute ActivityDTO activityDTO) {
-		activityService.add(ActivityConverter.getActivity(activityDTO));
-
+		
+		Activity activity = ActivityConverter.getActivity(activityDTO);
+		Long type = activityDTO.getType();
+		if (type != null){
+			ActivityType activityType =  activityService.getActivityTypeById(type);
+			activity.setActivityType(activityType);
+		}
+		activityService.add(activity);
 		ModelAndView mav = new ModelAndView("activities");
 		List<Activity> activities = activityService.getAllActivities();
 		mav.addObject("activities",
@@ -61,9 +68,13 @@ public class ActivityController {
 	@RequestMapping(value = "/saveActivity", method = RequestMethod.POST)
 	public ModelAndView editActivity(@ModelAttribute ActivityDTO activityDTO) {
 		
-		if (activityDTO != null){
-			activityService.update(ActivityConverter.getActivity(activityDTO));
+		Activity activity = ActivityConverter.getActivity(activityDTO);
+		Long type = activityDTO.getType();
+		if (type != null){
+			ActivityType activityType =  activityService.getActivityTypeById(type);
+			activity.setActivityType(activityType);
 		}
+		activityService.update(activity);
 		ModelAndView mav = new ModelAndView("activities");
 		List<Activity> activities = activityService.getAllActivities();
 		mav.addObject("activities",

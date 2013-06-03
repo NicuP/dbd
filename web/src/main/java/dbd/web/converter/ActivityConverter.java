@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.util.CollectionUtils;
 
 import dbd.task5.domain.relational.Activity;
+import dbd.task5.domain.relational.ActivityType;
 import dbd.web.dto.ActivityDTO;
 
 public class ActivityConverter {
@@ -13,10 +14,17 @@ public class ActivityConverter {
 	public static Activity getActivity(ActivityDTO activityDTO){
 			
 		Activity activity  = new Activity();
-		activity.setId(activityDTO.getId());
-		activity.setName(activityDTO.getName());
-		activity.setDuration(Integer.valueOf(activityDTO.getDuration()));
-		
+		if (activityDTO !=  null){
+			activity.setId(activityDTO.getId());
+			activity.setName(activityDTO.getName());
+			
+			try {
+				activity.setDuration(Integer.valueOf(activityDTO.getDuration()));
+			}
+			catch (NumberFormatException e){
+				activity.setDuration(0);
+			}
+		}
 		return activity;
 	}
 
@@ -37,6 +45,10 @@ public class ActivityConverter {
 			activityDTO.setId(activity.getId());
 			activityDTO.setName(activity.getName());
 			activityDTO.setDuration(String.valueOf(activity.getDuration()));
+			ActivityType activityType = activity.getActivityType();
+			if (activityType != null){
+				activityDTO.setType(activityType.getId());
+			}
 		}
 		return activityDTO;
 	}
