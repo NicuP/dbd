@@ -61,6 +61,9 @@
 									<div class="label">
                                     	<label >Duration: <%= activity.getDuration() %></label>
 									</div>
+									<div class="label">
+                                    	<label >Type: <%= activity.getTypeAsString() %> </label>
+									</div>
 				                    <form class="int" method=POST action="/dbd-assignment/removeActivity">
 				                       <input type="hidden" name="id" value="<%=activity.getId()%>">  
 				                        <input class="btn" type="submit" value="Remove" />                                

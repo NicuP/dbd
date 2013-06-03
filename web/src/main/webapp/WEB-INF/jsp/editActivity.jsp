@@ -24,6 +24,9 @@
    .number{
    		width: 25px;
    }
+   .hideID{
+   		display: none;
+   }
 </style> 
 </head>
 	<body>
@@ -42,6 +45,15 @@
 		        <form:label path="duration" cssClass="label">Duration</form:label>
 		        <form:input path="duration" cssClass="number"/>
 	        </div>
+	         <div>
+	         	<form:label path="type" cssClass="label">Type</form:label>
+		        <form:select path="type" >
+		        	<form:option value="1" >Lecture</form:option>
+		        	<form:option value="2" >Laboratory</form:option>
+		        	<form:option value="3" >Others</form:option>
+		        </form:select>
+	        </div>
+	        <form:hidden path="id"/>
 	        <div class="label">
 		        <form:button name="Submit">Update</form:button>
 	        </div>
