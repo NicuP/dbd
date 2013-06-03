@@ -13,4 +13,5 @@ public interface ActivityLogic {
 	public void removeActivity(Long id) throws Exception;
 	public Activity getActivity(Long id);
 	public ActivityType getActivityType(Long id);
+	
 }
