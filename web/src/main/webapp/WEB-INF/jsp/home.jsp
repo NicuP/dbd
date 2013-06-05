@@ -8,6 +8,9 @@
 	<title>Home</title>
 </head>
 <body>
-	<a href="/dbd-assignment/activities">Activities</a>
+	<a href="activities">Activities</a>
+    <a href="users">Users</a>
+    <a href="groups">Groups</a>
+    <a href="/assignment">Assignment</a>
 </body>
 </html>

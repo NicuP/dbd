@@ -31,16 +31,16 @@
 	<body>
 		<div>
 			Return to: <
-			<a href="/dbd-assignment/home">home</a> 
+			<a href="home">home</a>
 		</div>
 		<div>
-			<a href="/dbd-assignment/assignActivity">Assign activity to group</a>
+			<a href="assignActivity">Assign activity to group</a>
 		</div>
 		<div>
-			<a href="/dbd-assignment/trackActivity">Track Activity Presence</a>
+			<a href="trackActivity">Track Activity Presence</a>
 		</div>	
 		<div>
-			<a href="/dbd-assignment/createActivity">Create new activity</a>
+			<a href="createActivity">Create new activity</a>
 		</div>
 		<div>
 			<ol>
