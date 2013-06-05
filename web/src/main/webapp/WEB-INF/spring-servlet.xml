@@ -7,33 +7,15 @@
 						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
 						http://www.springframework.org/schema/context 
 						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-
-    <bean name="applicationConfig" class="dbd.task5.logic.config.ApplicationConfig" />
-
-    <context:annotation-config/>
-    <context:component-scan base-package="dbd.web" />
-
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="1000000"/>
-    </bean>
-
+ 
+    <context:component-scan
+        base-package="dbd.controller" />
+         
     <bean id="viewResolver"
         class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass"
             value="org.springframework.web.servlet.view.JstlView" />
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
-    </bean>
-
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
-        <property name="locations">
-            <list>
-                <value>classpath:mongo.properties</value>
-                <value>classpath:jpa.properties</value>
-            </list>
-        </property>
-        <property name="ignoreResourceNotFound" value="true"/>
-        <property name="ignoreUnresolvablePlaceholders" value="true"/>
-        <property name="fileEncoding" value="UTF-8"/>
     </bean>
 </beans>
