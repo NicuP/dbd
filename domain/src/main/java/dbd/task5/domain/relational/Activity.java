@@ -62,4 +62,32 @@ public class Activity {
     public void setActivityGroup(ActivityGroup activityGroup) {
         this.activityGroup = activityGroup;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Activity activity = (Activity) o;
+
+        if (duration != activity.duration) return false;
+        if (activityGroup != null ? !activityGroup.equals(activity.activityGroup) : activity.activityGroup != null)
+            return false;
+        if (activityType != null ? !activityType.equals(activity.activityType) : activity.activityType != null)
+            return false;
+        if (id != null ? !id.equals(activity.id) : activity.id != null) return false;
+        if (name != null ? !name.equals(activity.name) : activity.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (activityGroup != null ? activityGroup.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (activityType != null ? activityType.hashCode() : 0);
+        result = 31 * result + duration;
+        return result;
+    }
 }

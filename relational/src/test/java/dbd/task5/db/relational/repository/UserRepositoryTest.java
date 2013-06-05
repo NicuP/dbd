@@ -15,7 +15,9 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -43,9 +45,21 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void testFindByUsername() {
+    public void testFindByName() {
         List<User> dbUsers = userRepository.findByName(user.getName());
         assertThat("User with given username not found in db", dbUsers, hasItem(user));
+    }
+
+    @Test
+    public void findByUsernameAndPassword() {
+        User dbUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+        assertNotNull(dbUser);
+    }
+
+    @Test
+    public void findIdByUsername() {
+        List<Long> ids = userRepository.findIdsByUsername(user.getUsername());
+        assertTrue(ids.size() == 1);
     }
 
     @After

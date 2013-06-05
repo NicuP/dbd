@@ -53,9 +53,6 @@ public class UserLogicImpl implements UserLogic {
 
     @Override
     public void updateUser(User user) {
-        if(userRepository.exists(user.getId())){
-            userRepository.delete(user.getId());
-        }
         userRepository.save(user);
     }
 
